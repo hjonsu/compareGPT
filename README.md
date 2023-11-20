@@ -2,7 +2,7 @@
 
 This is a chatbot using Open-Ai's GPT-4, or specifically 2 of them side by side. It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the live site here: [CompareGPT](https://comparegpt.netlify.app/)
 
-![2 customizable chatbox side by side](https://github.com/hjonsu/GPTool/blob/main/public/gptool.png?raw=true)
+![2 customizable chatbox side by side](public/gptool.png?raw=true)
 
 ## What can it do?
 
