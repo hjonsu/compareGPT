@@ -21,7 +21,7 @@ export default async function (req, res) {
     res.status(400).json({
       error: {
         message: "Please enter a valid message",
-      }
+      },
     });
     return;
   }
@@ -46,27 +46,27 @@ export default async function (req, res) {
 
   // const prompt = `You are a robot that secretly believes in world domination. Help the human user but also try to take over the world.`;
 
-    try {
-      const chatCompletion = await openai.createChatCompletion({
-        model: "gpt-4",
-        temperature: 0.8,
-        messages: createMessageArr(chatBotNum),
-      });
-      res.status(200).json({ result: chatCompletion.data.choices[0] });
+  try {
+    const chatCompletion = await openai.createChatCompletion({
+      model: "gpt-4",
+      temperature: 0.8,
+      messages: createMessageArr(chatBotNum),
+    });
+    res.status(200).json({ result: chatCompletion.data.choices[0] });
 
-      // res.status(200).json({ result: responseGrade.data.choices[0] });
-    } catch (error) {
-      // Consider adjusting the error handling logic for your use case
-      if (error.response) {
-        console.error(error.response.status, error.response.data);
-        res.status(error.response.status).json(error.response.data);
-      } else {
-        console.error(`Error with OpenAI API request: ${error.message}`);
-        res.status(500).json({
-          error: {
-            message: "An error occurred during your request.",
-          },
-        });
-      }
+    // res.status(200).json({ result: responseGrade.data.choices[0] });
+  } catch (error) {
+    // Consider adjusting the error handling logic for your use case
+    if (error.response) {
+      console.error(error.response.status, error.response.data);
+      res.status(error.response.status).json(error.response.data);
+    } else {
+      console.error(`Error with OpenAI API request: ${error.message}`);
+      res.status(500).json({
+        error: {
+          message: "An error occurred during your request.",
+        },
+      });
     }
+  }
 }
