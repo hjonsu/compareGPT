@@ -103,10 +103,8 @@ export default function Chat({ bot }) {
     event.preventDefault();
     if (loading || loading2) return;
     setLoading(true);
-    // setLoading2(true);
-    if (checked) {
-      setLoading2(true);
-    }
+
+    checked ? setLoading2(true) : null;
 
     setUserMsg((userMsg) => [...userMsg, userInput]);
     try {
@@ -118,9 +116,8 @@ export default function Chat({ bot }) {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
-      if (checked) {
-        setLoading2(false);
-      }
+
+      checked ? setLoading2(false) : null;
     }
   }
 
@@ -184,8 +181,9 @@ export default function Chat({ bot }) {
           name="enable"
           onClick={handleClick}
           checked={checked}
+          readOnly
         />
-        <label for="response">Enable self grading?</label>
+        <label htmlFor="response">Enable self grading?</label>
       </div>
       {checked && (
         <div className={styles.responseGrade}>

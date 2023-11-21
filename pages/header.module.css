@@ -3,8 +3,9 @@
   width: 100%;
   background: #181d27;
   position: sticky;
-  top: 0;
+  top: -1px;
   left: 0;
+  /* z-index: 98; */
 }
 
 .header.down {

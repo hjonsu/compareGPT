@@ -10,8 +10,10 @@ export default function InfoModal({ button, title, children }) {
       margin: "auto",
       backgroundColor: "#181d27",
       color: "white",
+      zIndex: "199",
     },
   };
+
   return (
     <>
       <button className={styles.button} onClick={() => setShowModal(true)}>
