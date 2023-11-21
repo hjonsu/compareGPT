@@ -13,12 +13,6 @@
   font-weight: bold;
   font-style: normal;
 }
-.heading {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 .index__wrapper {
   display: flex;
@@ -44,7 +38,7 @@
 }
 .main h3 {
   font-size: 24px;
-  line-height: 16px;
+  line-height: 24px;
   font-weight: bold;
   color: #202123;
   margin: 16px 0;
@@ -127,10 +121,8 @@
   white-space: pre-wrap;
 }
 
-.description {
-  margin: auto;
-  max-width: 30rem;
-  text-align: center;
+.checkbox {
+  margin: 1rem;
 }
 
 /* Scrollbar CSS */
@@ -195,11 +187,6 @@
 .responseHeader .textToolInfo .textToolPopup {
   min-width: 300px;
   background-color: #dd7973;
-}
-
-.link {
-  text-decoration: none;
-  color: #ffbd03;
 }
 
 @media only screen and (max-width: 900px) {

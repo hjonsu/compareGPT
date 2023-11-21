@@ -8,7 +8,7 @@ export default function InfoModal({ button, title, children }) {
     content: {
       width: "50%",
       margin: "auto",
-      backgroundColor: "#5783db",
+      backgroundColor: "#181d27",
       color: "white",
     },
   };

@@ -14,6 +14,7 @@ export default function Chat({ bot }) {
   const [userMsg, setUserMsg] = useState([]);
   const bottomRef = useRef(null);
   const [grade, setGrade] = useState("");
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -21,6 +22,8 @@ export default function Chat({ bot }) {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [userMsg]);
+
+  const handleClick = () => setChecked(!checked);
 
   async function chatResponse() {
     try {
@@ -100,19 +103,24 @@ export default function Chat({ bot }) {
     event.preventDefault();
     if (loading || loading2) return;
     setLoading(true);
-    setLoading2(true);
+    // setLoading2(true);
+    if (checked) {
+      setLoading2(true);
+    }
 
     setUserMsg((userMsg) => [...userMsg, userInput]);
     try {
       const chatResponseData = await chatResponse();
-      await gradeResponse(chatResponseData);
+      checked ? await gradeResponse(chatResponseData) : null;
 
       setUserInput("");
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
-      setLoading2(false);
+      if (checked) {
+        setLoading2(false);
+      }
     }
   }
 
@@ -170,31 +178,43 @@ export default function Chat({ bot }) {
         />
         <input type="submit" value="submit" />
       </form>
-      <div className={styles.responseGrade}>
-        <div className={styles.responseHeader}>
-          <h5>Response Grade</h5>
-          <div className={styles.textToolInfo}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="0.8em"
-              viewBox="0 0 320 512"
-            >
-              <path d="M80 160c0-35.3 28.7-64 64-64h32c35.3 0 64 28.7 64 64v3.6c0 21.8-11.1 42.1-29.4 53.8l-42.2 27.1c-25.2 16.2-40.4 44.1-40.4 74V320c0 17.7 14.3 32 32 32s32-14.3 32-32v-1.4c0-8.2 4.2-15.8 11-20.2l42.2-27.1c36.6-23.6 58.8-64.1 58.8-107.7V160c0-70.7-57.3-128-128-128H144C73.3 32 16 89.3 16 160c0 17.7 14.3 32 32 32s32-14.3 32-32zm80 320a40 40 0 1 0 0-80 40 40 0 1 0 0 80z" />
-            </svg>
-            <div className={styles.textToolPopup}>
-              The bot grades its responses based on the following three
-              attributes: Accuracy, Creativity and Overall quality. Customizable
-              grading will come in a future update.
+      <div className={styles.checkbox}>
+        <input
+          type="checkbox"
+          name="enable"
+          onClick={handleClick}
+          checked={checked}
+        />
+        <label for="response">Enable self grading?</label>
+      </div>
+      {checked && (
+        <div className={styles.responseGrade}>
+          <div className={styles.responseHeader}>
+            <h5>Response Grade</h5>
+
+            <div className={styles.textToolInfo}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="0.8em"
+                viewBox="0 0 320 512"
+              >
+                <path d="M80 160c0-35.3 28.7-64 64-64h32c35.3 0 64 28.7 64 64v3.6c0 21.8-11.1 42.1-29.4 53.8l-42.2 27.1c-25.2 16.2-40.4 44.1-40.4 74V320c0 17.7 14.3 32 32 32s32-14.3 32-32v-1.4c0-8.2 4.2-15.8 11-20.2l42.2-27.1c36.6-23.6 58.8-64.1 58.8-107.7V160c0-70.7-57.3-128-128-128H144C73.3 32 16 89.3 16 160c0 17.7 14.3 32 32 32s32-14.3 32-32zm80 320a40 40 0 1 0 0-80 40 40 0 1 0 0 80z" />
+              </svg>
+              <div className={styles.textToolPopup}>
+                The bot grades its responses based on the following three
+                attributes: Accuracy, Creativity and Overall quality.
+                Customizable grading will come in a future update.
+              </div>
             </div>
           </div>
+          {/* <ul className={styles.responseGradeList}> */}
+          <h4 className={styles.responseGradeItem}>{grade.grade}</h4>
+          {loading2 && (
+            <PulseLoader color="#4681f4" size={10} speedMultiplier={0.65} />
+          )}
+          {/* </ul> */}
         </div>
-        {/* <ul className={styles.responseGradeList}> */}
-        <h4 className={styles.responseGradeItem}>{grade.grade}</h4>
-        {loading2 && (
-          <PulseLoader color="#4681f4" size={10} speedMultiplier={0.65} />
-        )}
-        {/* </ul> */}
-      </div>
+      )}
     </div>
   );
 }

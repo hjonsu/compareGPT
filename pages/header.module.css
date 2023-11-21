@@ -1,0 +1,32 @@
+.headingWrapper {
+  min-height: 85px;
+  width: 100%;
+  background: #181d27;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+.header.down {
+  top: -6rem;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  color: #fff;
+}
+
+.description {
+  margin: auto;
+  max-width: 30rem;
+  text-align: center;
+}
+
+.link {
+  text-decoration: none;
+  color: #ffbd03;
+}
