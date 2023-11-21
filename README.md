@@ -41,7 +41,7 @@ To run this on your local machine follow the following instructions, and you wil
 3. Navigate into the project directory
 
    ```bash
-   $ cd openai-quickstart-node
+   $ cd compareGPT
    ```
 
 4. Install the requirements
