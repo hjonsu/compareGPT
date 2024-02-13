@@ -18,9 +18,6 @@ export default function Home() {
           <Chat bot="1" />
           <Chat bot="2" />
         </div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
       </main>
     </>
   );
